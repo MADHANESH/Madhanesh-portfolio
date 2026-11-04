@@ -1,33 +1,50 @@
-import { projects } from '../data/portfolio.js'
+import { projectCategories, projects } from '../data/portfolio.js'
 import ProjectCard from './ProjectCard.jsx'
 
 function WorkSection() {
   return (
-    <section className="work-section section-wrap" id="work">
+    <section aria-labelledby="projects-title" className="work-section section-wrap" id="projects">
       <div className="section-heading">
         <div>
-          <p className="eyebrow">A few things I&apos;ve made</p>
-          <h2>Selected work<span className="accent">.</span></h2>
+          <p className="eyebrow">Selected work</p>
+          <h2 id="projects-title">Projects<span className="accent">.</span></h2>
         </div>
         <p className="section-note">
-          A mix of thoughtful ideas
+          Detailed project showcases,
           <br />
-          and hands-on making.
+          separate from employment history.
         </p>
       </div>
-      <div className="project-grid">
-        {projects.map((project, index) => (
-          <ProjectCard
-            index={index}
-            key={project.id}
-            project={project}
-            total={projects.length}
-          />
-        ))}
-      </div>
-      <p className="sample-note">
-        Portfolio starter content — replace these sample projects with your own.
-      </p>
+      {projectCategories.map((group) => {
+        const groupProjects = projects.filter(
+          (project) => project.category === group.category,
+        )
+
+        if (groupProjects.length === 0) {
+          return null
+        }
+
+        return (
+          <section
+            aria-labelledby={`${group.id}-title`}
+            className={`project-group project-group--${group.category}`}
+            key={group.id}
+          >
+            <header className="project-group-heading">
+              <div>
+                <p className="eyebrow">{group.eyebrow}</p>
+                <h3 id={`${group.id}-title`}>{group.title}</h3>
+              </div>
+              <p>{group.description}</p>
+            </header>
+            <div className="project-grid">
+              {groupProjects.map((project) => (
+                <ProjectCard key={project.id} project={project} />
+              ))}
+            </div>
+          </section>
+        )
+      })}
     </section>
   )
 }
