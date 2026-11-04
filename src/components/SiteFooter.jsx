@@ -1,10 +1,12 @@
+import { profile } from '../data/portfolio.js'
+
 function SiteFooter() {
   return (
     <footer className="site-footer section-wrap">
-      <a aria-label="Back to top" className="wordmark" href="#home">
-        M<span>.</span>
+      <a aria-label={`${profile.name}, back to top`} className="wordmark" href="#home">
+        MS<span>.</span>
       </a>
-      <p>Designed with care. Built for the web.</p>
+      <p>{profile.name} · Java backend engineering</p>
       <a href="#home">Back to top ↑</a>
     </footer>
   )

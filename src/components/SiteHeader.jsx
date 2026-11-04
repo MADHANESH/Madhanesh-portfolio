@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import { navigation, profile } from '../data/portfolio.js'
 import ArrowIcon from './ArrowIcon.jsx'
 
 function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const menuButtonRef = useRef(null)
 
   function closeMenu() {
     setMenuOpen(false)
@@ -11,6 +13,7 @@ function SiteHeader() {
   function handleKeyDown(event) {
     if (event.key === 'Escape') {
       closeMenu()
+      menuButtonRef.current?.focus()
     }
   }
 
@@ -21,12 +24,12 @@ function SiteHeader() {
   return (
     <header className="site-header" onKeyDown={handleKeyDown}>
       <a
-        aria-label="Madhanesh, home"
+        aria-label={`${profile.name}, home`}
         className="wordmark"
         href="#home"
         onClick={closeMenu}
       >
-        M<span>.</span>
+        MS<span>.</span>
       </a>
       <button
         aria-controls="primary-navigation"
@@ -34,20 +37,34 @@ function SiteHeader() {
         aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
         className={`menu-toggle${menuOpen ? ' is-open' : ''}`}
         onClick={toggleMenu}
+        ref={menuButtonRef}
         type="button"
       >
-        <span />
-        <span />
+        <span aria-hidden="true" />
+        <span aria-hidden="true" />
       </button>
       <nav
         aria-label="Main navigation"
         className={`main-nav${menuOpen ? ' is-open' : ''}`}
         id="primary-navigation"
       >
-        <a href="#work" onClick={closeMenu}>Work</a>
-        <a href="#about" onClick={closeMenu}>About</a>
-        <a className="nav-contact" href="#contact" onClick={closeMenu}>
-          Let&apos;s talk <ArrowIcon diagonal />
+        {navigation.map((item) => (
+          <a
+            href={item.href}
+            key={item.href}
+            onClick={closeMenu}
+          >
+            {item.label}
+          </a>
+        ))}
+        <a
+          aria-label="View GitHub profile"
+          className="nav-github"
+          href={profile.github.url}
+          rel="noreferrer"
+          target="_blank"
+        >
+          GitHub <ArrowIcon diagonal />
         </a>
       </nav>
     </header>

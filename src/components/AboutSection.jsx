@@ -1,28 +1,30 @@
-import { skills } from '../data/portfolio.js'
+import ArrowIcon from './ArrowIcon.jsx'
 
 function AboutSection() {
   return (
-    <section className="about-section" id="about">
-      <div className="about-inner section-wrap">
-        <div className="about-heading">
-          <p className="eyebrow">About Madhanesh</p>
-          <h2>
-            Growing as a
-            <br />
-            developer<span className="accent">.</span>
-          </h2>
-        </div>
-        <div className="about-copy">
-          <p>
-            I&apos;m an Associate Software Developer at Vasara AI Labs. I enjoy
-            solving problems, learning new technologies, and building useful
-            software. My internship experience helped me develop a practical
-            foundation and a curiosity for how great products are made.
-          </p>
-          <ul aria-label="Skills" className="skills-list">
-            {skills.map((skill) => <li key={skill}>{skill}</li>)}
-          </ul>
-        </div>
+    <section aria-labelledby="about-title" className="about-section section-wrap" id="about">
+      <div className="about-heading">
+        <p className="eyebrow">A little about me</p>
+        <h2 id="about-title">
+          Practical software.
+          <br />
+          Thoughtful engineering<span className="accent">.</span>
+        </h2>
+      </div>
+      <div className="about-copy">
+        <p>
+          With about one year in professional software development, I focus on
+          practical backend work: clear API boundaries, reliable data flows, and
+          integrations that are straightforward to maintain.
+        </p>
+        <p>
+          I hold a B.E. in Computer Science and Engineering from Adhiyamaan
+          College of Engineering, and bring a hands-on approach to learning and
+          solving real product problems.
+        </p>
+        <a className="inline-link" href="#experience">
+          Explore my experience <ArrowIcon />
+        </a>
       </div>
     </section>
   )
