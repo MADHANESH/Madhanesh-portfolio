@@ -196,10 +196,45 @@
 .hero-name {
   margin-bottom: 12px;
   color: var(--text-secondary);
+  font-size: clamp(20px, 2.4vw, 30px);
+  letter-spacing: 0.1em;
+  line-height: 1.25;
+}
+
+.hero-eyebrow {
+  font-size: clamp(12px, 1.35vw, 15px);
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 0.85em;
+  margin-left: 3px;
+  vertical-align: -0.08em;
+  background: var(--accent);
+  animation: typing-cursor-blink 700ms steps(2, start) infinite;
+}
+
+@keyframes typing-cursor-blink {
+  to {
+    visibility: hidden;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .eyebrow-rule {
-  width: 21px;
+  width: 41px;
   height: 1px;
   background: var(--accent);
 }
@@ -1570,7 +1605,7 @@
   }
 
   .hero-eyebrow {
-    font-size: 9px;
+    font-size: 11px;
   }
 
   .focus-item {

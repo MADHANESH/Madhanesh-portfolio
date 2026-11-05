@@ -1,11 +1,41 @@
+import { useEffect, useState } from 'react'
 import ArrowIcon from './ArrowIcon.jsx'
 import { getExperienceDuration, profile } from '../data/portfolio.js'
 
 function HeroSection() {
+  const [typedName, setTypedName] = useState('')
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setTypedName(profile.name)
+      return
+    }
+
+    let characterIndex = 0
+    let timeoutId
+    const typeNextCharacter = () => {
+      characterIndex += 1
+      setTypedName(profile.name.slice(0, characterIndex))
+
+      if (characterIndex < profile.name.length) {
+        timeoutId = window.setTimeout(typeNextCharacter, 55)
+      }
+    }
+
+    timeoutId = window.setTimeout(typeNextCharacter, 160)
+    return () => window.clearTimeout(timeoutId)
+  }, [])
+
   return (
     <section className="hero section-wrap" id="home">
       <div className="hero-copy">
-        <p className="eyebrow hero-name">{profile.name}</p>
+        <p className="eyebrow hero-name">
+          <span className="visually-hidden">{profile.name}</span>
+          <span aria-hidden="true">
+            {typedName}
+            {typedName.length < profile.name.length && <span className="typing-cursor" />}
+          </span>
+        </p>
         <p className="eyebrow hero-eyebrow">
           <span className="eyebrow-rule" />
           {profile.role} <span aria-hidden="true">/</span> {profile.company}
