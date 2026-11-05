@@ -6,7 +6,7 @@ function SiteFooter() {
       <a aria-label={`${profile.name}, back to top`} className="wordmark" href="#home">
         MS<span>.</span>
       </a>
-      <p>{profile.name} · Java backend engineering</p>
+      <p>{profile.name} · Java Backend Developer</p>
       <a href="#home">Back to top ↑</a>
     </footer>
   )
