@@ -1,4 +1,5 @@
 import ArrowIcon from './ArrowIcon.jsx'
+import { getExperienceDuration, profile } from '../data/portfolio.js'
 
 function AboutSection() {
   return (
@@ -11,11 +12,12 @@ function AboutSection() {
           Thoughtful engineering<span className="accent">.</span>
         </h2>
       </div>
-      <div className="about-copy">
+      <div className="about-copy glow-card" tabIndex={0}>
         <p>
-          With about one year in professional software development, I focus on
-          practical backend work: clear API boundaries, reliable data flows, and
-          integrations that are straightforward to maintain.
+          With {getExperienceDuration(profile.experienceStartDate)} of professional
+          software development experience, I focus on practical backend work:
+          clear API boundaries, reliable data flows, and integrations that are
+          straightforward to maintain.
         </p>
         <p>
           I hold a B.E. in Computer Science and Engineering from Adhiyamaan

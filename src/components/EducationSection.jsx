@@ -13,7 +13,12 @@ function EducationSection() {
       </div>
       <div className="education-list">
         {education.map((item) => (
-          <article className="education-item" key={item.id}>
+          <article className="education-item glow-card" key={item.id} tabIndex={0}>
+            <img
+              alt="Adhiyamaan College of Engineering logo"
+              className="education-logo"
+              src="/college-logo.png"
+            />
             <div>
               <h3>{item.qualification}</h3>
               <p>{item.institution}</p>

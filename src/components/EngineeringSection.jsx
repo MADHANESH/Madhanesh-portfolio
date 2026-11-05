@@ -18,7 +18,7 @@ function EngineeringSection() {
         </div>
         <div className="engineering-grid">
           {engineeringAreas.map((area, index) => (
-            <article className="engineering-item" key={area.id}>
+            <article className="engineering-item glow-card" key={area.id} tabIndex={0}>
               <span aria-hidden="true" className="engineering-index">
                 0{index + 1}
               </span>

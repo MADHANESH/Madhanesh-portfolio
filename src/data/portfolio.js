@@ -2,14 +2,35 @@ export const profile = {
   name: 'Madhaneshwaran M. S.',
   role: 'Associate Software Engineer',
   company: 'Vasara AI Labs',
-  experience: 'About one year of professional software development experience',
+  companyLogo: '/vasara-logo.png',
+  experienceStartDate: '2025-11-01',
   email: 'madhaneshwwaranmadhan@gmail.com',
-  github: {
-    label: 'GitHub',
-    url: 'https://github.com/MADHANESH',
-  },
   summary:
     'I build Java and Spring Boot backend services, design REST APIs, and connect applications with databases and external services. I enjoy solving practical engineering problems and working across the API, data, and integration layers.',
+}
+
+export function getExperienceDuration(startDate, now = new Date()) {
+  const start = new Date(`${startDate}T00:00:00`)
+  let months =
+    (now.getFullYear() - start.getFullYear()) * 12 +
+    now.getMonth() - start.getMonth()
+
+  if (now.getDate() < start.getDate()) {
+    months -= 1
+  }
+
+  months = Math.max(0, months)
+  const years = Math.floor(months / 12)
+  const remainingMonths = months % 12
+
+  if (years === 0) {
+    return `${months} ${months === 1 ? 'month' : 'months'}`
+  }
+
+  const yearLabel = `${years} ${years === 1 ? 'year' : 'years'}`
+  return remainingMonths === 0
+    ? yearLabel
+    : `${yearLabel} ${remainingMonths} ${remainingMonths === 1 ? 'month' : 'months'}`
 }
 
 export const navigation = [
@@ -25,22 +46,54 @@ export const skillGroups = [
   {
     id: 'backend',
     name: 'Backend development',
-    skills: ['Java', 'Spring Boot', 'REST APIs', 'Microservices'],
+    skills: [
+      { name: 'Java', icon: 'java' },
+      { name: 'Spring Boot', icon: 'springboot' },
+      { name: 'Spring Data JPA', mark: 'JPA' },
+      { name: 'Hibernate', icon: 'hibernate' },
+      { name: 'REST API', mark: 'API' },
+      { name: 'Microservices', mark: 'MS' },
+    ],
   },
   {
-    id: 'data',
-    name: 'Data and persistence',
-    skills: ['PostgreSQL', 'SQL'],
+    id: 'frontend',
+    name: 'Frontend',
+    skills: [
+      { name: 'HTML5', icon: 'html5' },
+      { name: 'CSS3', icon: 'css3' },
+      { name: 'JavaScript', icon: 'javascript' },
+      { name: 'React', icon: 'react' },
+    ],
   },
   {
-    id: 'integration',
-    name: 'Integrations and messaging',
-    skills: ['Google OAuth', 'Authentication and authorization', 'Apache Kafka'],
+    id: 'database',
+    name: 'Database',
+    skills: [
+      { name: 'PostgreSQL', icon: 'postgresql' },
+      { name: 'SQL', mark: 'SQL' },
+    ],
   },
   {
     id: 'tools',
-    name: 'Tools and collaboration',
-    skills: ['Maven', 'Git and GitHub', 'Postman', 'React integration'],
+    name: 'Tools and DevOps',
+    skills: [
+      { name: 'Git', icon: 'git' },
+      { name: 'GitHub', icon: 'github' },
+      { name: 'Apache Kafka', icon: 'apachekafka' },
+      { name: 'Maven', icon: 'apachemaven' },
+      { name: 'Jenkins', icon: 'jenkins' },
+      { name: 'Postman', icon: 'postman' },
+      { name: 'Vercel', icon: 'vercel' },
+    ],
+  },
+  {
+    id: 'design',
+    name: 'Design',
+    skills: [
+      { name: 'Figma', icon: 'figma' },
+      { name: 'Adobe XD', icon: 'adobexd' },
+      { name: 'Adobe Illustrator', icon: 'adobeillustrator' },
+    ],
   },
 ]
 
@@ -49,31 +102,30 @@ export const experience = [
     id: 'vasara-ai-labs',
     role: 'Associate Software Engineer',
     organization: 'Vasara AI Labs',
-    period: '[Add employment dates]',
-    duration: 'Approximately 1 year',
+    period: 'November 2025 – Present',
+    startDate: profile.experienceStartDate,
     kind: 'Full-time role',
-    responsibilities: [
-      'Develop backend services and REST APIs using Java and Spring Boot.',
-      'Contribute to service integration and database-backed application workflows.',
-    ],
     projects: [
       { id: 'raize-connect', name: 'Raize Connect' },
       { id: 'mayil-mayil', name: 'Mayil-Mayil (M&M)' },
+      { id: 'sales-hub', name: 'Sales Hub' },
     ],
     technologies: [
-      'Java',
-      'Spring Boot',
-      'REST APIs',
-      'Microservices',
-      'PostgreSQL',
-      'Spring Data JPA / Hibernate',
-      'React',
-      'Google OAuth',
-      'Apache Kafka',
-      'Maven',
-      'Git / GitHub',
-      'Postman',
-      'DevOps workflows',
+      { name: 'Java', icon: 'java' },
+      { name: 'Spring Boot', icon: 'springboot' },
+      { name: 'React', icon: 'react' },
+      { name: 'PostgreSQL', icon: 'postgresql' },
+      { name: 'Spring Data JPA', mark: 'JPA' },
+      { name: 'Hibernate', icon: 'hibernate' },
+      { name: 'REST APIs', mark: 'API' },
+      { name: 'Microservices', mark: 'MS' },
+      { name: 'Google OAuth', icon: 'google' },
+      { name: 'Apache Kafka', icon: 'apachekafka' },
+      { name: 'Maven', icon: 'apachemaven' },
+      { name: 'Git', icon: 'git' },
+      { name: 'Postman', icon: 'postman' },
+      { name: 'Jenkins', icon: 'jenkins' },
+      { name: 'Vercel', icon: 'vercel' },
     ],
   },
   {
@@ -112,17 +164,9 @@ export const projectCategories = [
     id: 'academic-projects',
     category: 'academic',
     eyebrow: 'College projects',
-    title: 'Academic Projects',
+    title: 'College Projects',
     description:
       'Projects developed as part of my academic learning and college experience.',
-  },
-  {
-    id: 'unclassified-projects',
-    category: 'unconfirmed',
-    eyebrow: 'Category to confirm',
-    title: 'Other Existing Projects',
-    description:
-      'These existing projects are preserved here until their academic or professional category is confirmed.',
   },
 ]
 
@@ -131,13 +175,9 @@ export const projects = [
     id: 'raize-connect',
     name: 'Raize Connect',
     category: 'professional',
-    categoryLabel: 'Company project',
-    shortDescription: 'Project description to be added.',
-    overview: 'Project overview to be added.',
-    role: 'Role to be added.',
-    contribution: '[Add your contribution to this project.]',
-    technologies: ['Technologies to be added.'],
-    keyFeatures: ['Key features to be added.'],
+    categoryLabel: 'Company Project',
+    shortDescription: 'Company project associated with professional experience.',
+    technologies: ['Java', 'Spring Boot', 'REST APIs', 'Postman', 'Git'],
     image: null,
     url: null,
     artClassName: 'project-art--raize',
@@ -147,21 +187,9 @@ export const projects = [
     id: 'mayil-mayil',
     name: 'Mayil-Mayil (M&M)',
     category: 'professional',
-    categoryLabel: 'Company project',
-    shortDescription:
-      'E-commerce platform with backend work spanning catalog and inventory services.',
-    overview:
-      'Professional contributions to catalog and inventory services, REST APIs, and integrations supporting e-commerce and CRM workflows.',
-    role: 'Software development contributor',
-    contribution: [
-      'Contributed to REST APIs for catalog and inventory workflows.',
-      'Worked on service integrations across e-commerce and CRM use cases.',
-    ],
+    categoryLabel: 'Company Project',
+    shortDescription: 'E-commerce platform project.',
     technologies: ['Java', 'Spring Boot', 'REST APIs', 'PostgreSQL', 'SQL'],
-    keyFeatures: [
-      'Catalog and inventory service workflows.',
-      'Backend integrations for e-commerce and CRM use cases.',
-    ],
     image: null,
     url: null,
     artClassName: 'project-art--commerce',
@@ -170,14 +198,10 @@ export const projects = [
   {
     id: 'sales-hub',
     name: 'Sales Hub',
-    category: 'academic',
-    categoryLabel: 'College project',
-    shortDescription: 'Project description to be added.',
-    overview: 'Project overview to be added.',
-    role: 'Role to be added.',
-    contribution: '[Add your contribution to this project.]',
-    technologies: ['Technologies to be added.'],
-    keyFeatures: ['Key features to be added.'],
+    category: 'professional',
+    categoryLabel: 'Company Project',
+    shortDescription: 'Company project associated with professional experience.',
+    technologies: ['Java', 'Spring Boot', 'REST APIs', 'Postman', 'Git'],
     image: null,
     url: null,
     artClassName: 'project-art--sales',
@@ -186,52 +210,28 @@ export const projects = [
   {
     id: 'resume-review',
     name: 'Resume Review Application',
-    category: 'unconfirmed',
-    categoryLabel: 'Category to confirm',
+    category: 'academic',
+    categoryLabel: 'College Project',
     shortDescription:
       'A web application for reviewing resumes, with a React interface and Python in the stack.',
-    overview:
-      'A resume-review web application listed on the existing portfolio. Its academic or professional classification has not been confirmed.',
-    role: 'Role to be added.',
-    contribution: '[Add your contribution to this project.]',
     technologies: ['React', 'Python'],
-    keyFeatures: ['Resume review workflow.'],
     image: null,
     url: 'https://smart-resume-analyzer-web.vercel.app',
     artClassName: 'project-art--resume',
     mark: 'CV',
-    links: [
-      {
-        label: 'Source code',
-        url: 'https://github.com/MADHANESH/react-resume-review-web-application',
-      },
-    ],
   },
   {
     id: 'pharmaceutical-supply-chain',
     name: 'Pharmaceutical Supply Chain',
-    category: 'unconfirmed',
-    categoryLabel: 'Category to confirm',
+    category: 'academic',
+    categoryLabel: 'College Project',
     shortDescription:
       'A blockchain-based project exploring pharmaceutical product traceability across a supply chain.',
-    overview:
-      'A web application concept for tracking pharmaceutical product movement and transactions using Ethereum. Its academic or professional classification has not been confirmed.',
-    role: 'Role to be added.',
-    contribution: '[Add your contribution to this project.]',
     technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Web3'],
-    keyFeatures: [
-      'Blockchain-based records for pharmaceutical product movement.',
-    ],
     image: null,
     url: 'https://pharmaceutical-supply.vercel.app/',
     artClassName: 'project-art--supply',
     mark: 'SC',
-    links: [
-      {
-        label: 'Source code',
-        url: 'https://github.com/MADHANESH/Pharmaceutical-Supply-chain-management-using-Ethereum-Blockchain-main',
-      },
-    ],
   },
 ]
 

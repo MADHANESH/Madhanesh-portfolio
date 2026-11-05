@@ -1,18 +1,13 @@
-import ArrowIcon from './ArrowIcon.jsx'
+import TechnologyLogo from './TechnologyLogo.jsx'
 
 function ProjectCard({ project }) {
-  const projectDetails = [
-    {
-      label: 'My contribution',
-      items: Array.isArray(project.contribution)
-        ? project.contribution
-        : [project.contribution],
-    },
-    { label: 'Key features', items: project.keyFeatures },
-  ]
-
   return (
-    <article aria-labelledby={`${project.id}-title`} className="project-card" id={project.id}>
+    <article
+      aria-labelledby={`${project.id}-title`}
+      className="project-card glow-card"
+      id={project.id}
+      tabIndex={0}
+    >
       {project.image ? (
         <img
           alt={`${project.name} project`}
@@ -28,51 +23,42 @@ function ProjectCard({ project }) {
       )}
       <div className="project-content">
         <div className="project-meta">
-          <p className="project-type">{project.categoryLabel}</p>
+          <div className="project-meta-heading">
+            <p className="project-type">{project.categoryLabel}</p>
+            {project.category === 'professional' ? (
+              <img
+                alt="Vasara AI Labs logo"
+                className="project-company-logo"
+                src="/vasara-logo.png"
+              />
+            ) : project.category === 'academic' ? (
+              <img
+                alt="Adhiyamaan College of Engineering logo"
+                className="project-college-logo"
+                src="/college-logo.png"
+              />
+            ) : null}
+          </div>
           <h3 id={`${project.id}-title`}>{project.name}</h3>
           <p className="project-category">{project.shortDescription}</p>
         </div>
-        <div className="project-overview">
-          <h4>Overview</h4>
-          <p>{project.overview}</p>
-        </div>
-        <div className="project-role">
-          <h4>My role</h4>
-          <p>{project.role}</p>
-        </div>
-        {projectDetails.map(({ label, items }) => (
-          <div className="project-detail" key={label}>
-            <h4>{label}</h4>
-            <ul>
-              {items.map((item) => <li key={item}>{item}</li>)}
+        {project.technologies.length > 0 && (
+          <div className="project-detail">
+            <h4>Technologies</h4>
+            <ul aria-label={`${project.name} technologies`} className="project-technologies">
+              {project.technologies.map((technology) => (
+                <li key={technology}>
+                  <TechnologyLogo technology={technology} />
+                </li>
+              ))}
             </ul>
           </div>
-        ))}
-        <div className="project-detail">
-          <h4>Technologies</h4>
-          <ul aria-label={`${project.name} technologies`} className="project-technologies">
-            {project.technologies.map((technology) => (
-              <li key={technology}>{technology}</li>
-            ))}
-          </ul>
-        </div>
-        {(project.url || project.links?.length > 0) && (
+        )}
+        {project.url && (
           <div className="project-links">
-            {project.url && (
-              <a href={project.url} rel="noreferrer" target="_blank">
-                Public project <ArrowIcon diagonal />
-              </a>
-            )}
-            {project.links?.map((link) => (
-              <a
-                href={link.url}
-                key={link.url}
-                rel="noreferrer"
-                target="_blank"
-              >
-                {link.label} <ArrowIcon diagonal />
-              </a>
-            ))}
+            <a href={project.url} rel="noreferrer" target="_blank">
+              View project
+            </a>
           </div>
         )}
       </div>

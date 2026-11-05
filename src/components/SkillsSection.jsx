@@ -1,4 +1,5 @@
 import { skillGroups } from '../data/portfolio.js'
+import TechnologyLogo from './TechnologyLogo.jsx'
 
 function SkillsSection() {
   return (
@@ -17,11 +18,13 @@ function SkillsSection() {
         </div>
         <div className="skill-groups">
           {skillGroups.map((group) => (
-            <article className="skill-group" key={group.id}>
+            <article className="skill-group glow-card" key={group.id}>
               <h3>{group.name}</h3>
               <ul>
                 {group.skills.map((skill) => (
-                  <li key={skill}>{skill}</li>
+                  <li className="skill-card" key={skill.name} tabIndex={0}>
+                    <TechnologyLogo technology={skill} />
+                  </li>
                 ))}
               </ul>
             </article>

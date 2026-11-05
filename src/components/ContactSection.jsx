@@ -19,14 +19,6 @@ function ContactSection() {
           <a className="button button--primary" href={`mailto:${profile.email}`}>
             {profile.email} <ArrowIcon diagonal />
           </a>
-          <a
-            className="button button--secondary"
-            href={profile.github.url}
-            rel="noreferrer"
-            target="_blank"
-          >
-            View GitHub <ArrowIcon diagonal />
-          </a>
         </div>
       </div>
     </section>

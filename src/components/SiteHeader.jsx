@@ -1,6 +1,5 @@
 import { useRef, useState } from 'react'
 import { navigation, profile } from '../data/portfolio.js'
-import ArrowIcon from './ArrowIcon.jsx'
 
 function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -24,12 +23,20 @@ function SiteHeader() {
   return (
     <header className="site-header" onKeyDown={handleKeyDown}>
       <a
-        aria-label={`${profile.name}, home`}
-        className="wordmark"
+        aria-label={`${profile.name} with ${profile.company}, home`}
+        className="header-brand-lockup"
         href="#home"
         onClick={closeMenu}
       >
-        MS<span>.</span>
+        <span className="wordmark">
+          MS<span>.</span>
+        </span>
+        <span aria-hidden="true" className="header-brand-connector">×</span>
+        <img
+          alt={`${profile.company} logo`}
+          className="header-company-logo"
+          src={profile.companyLogo}
+        />
       </a>
       <button
         aria-controls="primary-navigation"
@@ -57,15 +64,6 @@ function SiteHeader() {
             {item.label}
           </a>
         ))}
-        <a
-          aria-label="View GitHub profile"
-          className="nav-github"
-          href={profile.github.url}
-          rel="noreferrer"
-          target="_blank"
-        >
-          GitHub <ArrowIcon diagonal />
-        </a>
       </nav>
     </header>
   )

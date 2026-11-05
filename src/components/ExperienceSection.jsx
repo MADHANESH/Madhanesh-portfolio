@@ -1,4 +1,5 @@
-import { experience } from '../data/portfolio.js'
+import { experience, getExperienceDuration } from '../data/portfolio.js'
+import TechnologyLogo from './TechnologyLogo.jsx'
 
 function ExperienceSection() {
   return (
@@ -14,13 +15,13 @@ function ExperienceSection() {
             Experience<span className="accent">.</span>
           </h2>
           <p className="section-intro">
-            Employment and internship experience, separate from project showcases.
+            Professional experience, separate from project showcases.
           </p>
         </div>
         <ol className="experience-list">
           {experience.map((item) => (
             <li className="experience-item" key={item.id}>
-              <article>
+              <article className="glow-card" tabIndex={0}>
                 <div className="experience-item-heading">
                   <div>
                     <p className="experience-type">{item.kind}</p>
@@ -29,20 +30,24 @@ function ExperienceSection() {
                   </div>
                   <div className="experience-dates">
                     <p className="experience-period">{item.period}</p>
-                    {item.duration && (
-                      <p className="experience-duration">{item.duration}</p>
+                    {item.startDate && (
+                      <p className="experience-duration">
+                        {getExperienceDuration(item.startDate)}
+                      </p>
+                    )}
+                    {item.organization === 'Vasara AI Labs' && (
+                      <img
+                        alt="Vasara AI Labs logo"
+                        className="experience-company-logo"
+                        src="/vasara-logo.png"
+                      />
                     )}
                   </div>
                 </div>
-                {item.responsibilities ? (
+                {item.projects ? (
                   <>
-                    <ul className="experience-highlights">
-                      {item.responsibilities.map((responsibility) => (
-                        <li key={responsibility}>{responsibility}</li>
-                      ))}
-                    </ul>
                     <div className="experience-projects">
-                      <span>Project involvement</span>
+                      <span>Associated projects</span>
                       <ul>
                         {item.projects.map((project) => (
                           <li key={project.id}>
@@ -53,9 +58,14 @@ function ExperienceSection() {
                     </div>
                     <div className="experience-stack">
                       <span>Technology stack</span>
-                      <ul aria-label={`${item.organization} technology stack`}>
+                      <ul
+                        aria-label={`${item.organization} technology stack`}
+                        className="experience-technologies"
+                      >
                         {item.technologies.map((technology) => (
-                          <li key={technology}>{technology}</li>
+                          <li key={technology.name}>
+                            <TechnologyLogo technology={technology} />
+                          </li>
                         ))}
                       </ul>
                     </div>

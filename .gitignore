@@ -11,6 +11,9 @@ node_modules
 dist
 dist-ssr
 *.local
+portfolio-backend/storage/
+portfolio-backend/.env
+portfolio-backend/target/
 
 # Editor directories and files
 .vscode/*

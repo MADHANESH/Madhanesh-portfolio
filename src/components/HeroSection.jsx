@@ -1,5 +1,5 @@
 import ArrowIcon from './ArrowIcon.jsx'
-import { profile } from '../data/portfolio.js'
+import { getExperienceDuration, profile } from '../data/portfolio.js'
 
 function HeroSection() {
   return (
@@ -18,7 +18,9 @@ function HeroSection() {
         <p className="hero-description">
           {profile.summary}
         </p>
-        <p className="hero-experience">{profile.experience}</p>
+        <p className="hero-experience">
+          {getExperienceDuration(profile.experienceStartDate)} of professional experience
+        </p>
         <div className="hero-actions">
           <a className="button button--primary" href="#projects">
             View projects <ArrowIcon />
@@ -27,14 +29,6 @@ function HeroSection() {
             Contact me
           </a>
         </div>
-        <a
-          className="hero-profile-link"
-          href={profile.github.url}
-          rel="noreferrer"
-          target="_blank"
-        >
-          GitHub profile <ArrowIcon diagonal />
-        </a>
       </div>
       <div aria-hidden="true" className="hero-visual">
         <div className="code-window">
